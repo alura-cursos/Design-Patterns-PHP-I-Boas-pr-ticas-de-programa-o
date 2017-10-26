@@ -1,14 +1,11 @@
 <?php
 	date_default_timezone_get("Brazil/East");
 
-	require "AcoesAoGerarNota.php";
-	require "NotaFiscal.php";
-	require "Item.php";
-	require "Multiplicador.php";
-	require "Impressora.php";
-	require "NotaFiscalDao.php";
-	require "EnviadorDeSms.php";
-	require "NotaFiscalBuilder.php";
+	function carregaClasse($nomeClasse){
+		require $nomeClasse.".php";
+	}
+
+	spl_autoload_register("carregaClasse");
 
 	$geradorDeNotas = new NotaFiscalBuilder();
 
