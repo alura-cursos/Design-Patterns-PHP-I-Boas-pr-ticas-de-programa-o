@@ -25,4 +25,8 @@
 		public function getCnpj() {
 			return $this->cnpj;
 		}
+
+		public function getValorBruto() {
+			return $this->valorBruto;
+		}
 	}
