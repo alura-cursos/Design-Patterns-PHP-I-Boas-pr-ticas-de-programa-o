@@ -1,6 +1,9 @@
 <?php
 class IHIT extends TemplateDeImpostoCondicional {
-
+  function __construct($imposto = null){
+    parent::__construct($imposto);
+  }
+  
   public function deveUsarMaximaTaxacao(Orcamento $orcamento) {
     $noOrcamento = Array();
 

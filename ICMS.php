@@ -1,5 +1,9 @@
 <?php
 class ICMS extends TemplateDeImpostoCondicional {
+	function __construct($imposto = null){
+		parent::__construct($imposto);
+	}
+
 	public function deveUsarOMaximo(Orcamento $orcamento){
 		return $orcamento->getValor() > 500;
 	}
