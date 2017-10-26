@@ -1,28 +1,24 @@
 <?php
-	require "Imposto.php";
+	require "Desconto.php";
+	require "DescontoPorVendaCasada.php";
+	require "DescontoPorCincoItens.php";
+	require "DescontoPorMaisDeQuinhentosReais.php";
+	require "SemDesconto.php";
 	require "Orcamento.php";
-	require "CalculadoraDeImpostos.php";
-	require "ICMS.php";
-	require "ISS.php";
-	require "KCV.php";
-	require "ICCC.php";
+	require "Item.php";
 
-	$reforma = new Orcamento(500);
+    $d1 = new DescontoPorCincoItens();
+    $d2 = new DescontoPorMaisDeQuinhentosReais();
+    $d3 = new DescontoPorVendaCasada();
+    $d4 = new SemDesconto();
 
-	$calculadora = new CalculadoraDeImpostos();
+    $d1->setProximo($d2);
+    $d2->setProximo($d3);
+    $d3->setProximo($d4);
 
-	echo $calculadora->calcula($reforma,new ICMS());
+    $orcamento = new Orcamento(500.0);
+    $orcamento->adicionaItem(new Item("LAPIS",1.00));
+    $orcamento->adicionaItem(new Item("CANETA",1.50));
 
-	echo "<br/>";
-
-	echo $calculadora->calcula($reforma,new ISS());
-
-	echo "<br/>";
-
-	echo $calculadora->calcula($reforma,new KCV());
-
-	echo "<br/>";
-
-	$novoImposto = new ICCC();
-
-	echo $novoImposto->calcula($reforma);
+    $desconto = $d1->desconta($orcamento);
+    echo $desconto;
